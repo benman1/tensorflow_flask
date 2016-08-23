@@ -22,14 +22,6 @@ def parse_postget(f):
         return f(d)
     return wrapper
 
-def restore(checkpoint_file='linear.chk'):
-    saver = tf.train.Saver()
-    saver.restore(session, checkpoint_file)
-    session.run(tf.initialize_all_variables())
-    print("Model restored.")
-    return session
-
-
 @app.route('/model', methods=['GET', 'POST'])
 @parse_postget
 def apply_model(d):
